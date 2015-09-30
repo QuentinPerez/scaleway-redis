@@ -11,7 +11,7 @@ RUN /usr/local/sbin/builder-enter
 RUN apt-get update \
  && apt-get upgrade -y -q \
  && apt-get install -y -q \
-    redis \
+    redis-server redis-tools \
  && apt-get clean
 
 
