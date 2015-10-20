@@ -11,6 +11,9 @@ PASSWORD=$(head /dev/urandom -c 512 | sha1sum | awk '// { print $1; }')
 sed -i "s/{password}/$PASSWORD/" /etc/update-motd.d/60-app-redis
 sed -i "s/{password}/$PASSWORD/" /root/README
 
+# Fix redis perms
+chown -R redis:adm /var/log/redis
+
 # HTPASSWD
 htpasswd -bc /etc/nginx/.redis-commander.passwd redis $PASSWORD
 
