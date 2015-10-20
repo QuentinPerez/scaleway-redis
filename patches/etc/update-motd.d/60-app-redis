@@ -1,0 +1,23 @@
+#!/bin/bash
+
+PUBLIC_IP=$(oc-metadata --cached PUBLIC_IP_ADDRESS)
+
+cat <<EOF
+Hi Cloud Rider,
+
+Welcome to the Redis image, the following are installed
+and configured:
+
+- Redis
+- Nginx
+- Redis commander
+
+You can access Redis commander at http://${PUBLIC_IP}/
+
+The Redis commander credentials are:
+
+- login: redis 
+- password: {password}
+
+Enjoy!
+EOF

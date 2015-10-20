@@ -1,0 +1,17 @@
+Hi Cloud Rider,
+
+Welcome to the Redis image, the following are installed
+and configured:
+
+- Redis
+- Nginx 
+- Redis commander
+
+You can access Redis commander at http://your-server-ip/
+
+The Redis commander credentials are:
+
+- login: redis 
+- password: {password}
+
+Enjoy!
