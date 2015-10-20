@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# We need this extra script run ONCE on startup to initialize the
+# redis-commander with per-image passwords.
+
+export DEBIAN_FRONTEND=noninteractive
+
+PASSWORD=$(head /dev/urandom -c 512 | sha1sum | awk '// { print $1; }')
+
+# MOTD & README
+sed -i "s/{password}/$PASSWORD/" /etc/update-motd.d/60-app-redis
+sed -i "s/{password}/$PASSWORD/" /root/README
+
+# HTPASSWD
+htpasswd -bc /etc/nginx/.redis-commander.passwd redis $PASSWORD
+
+
+# this service is only needed on the first boot so we remove it here.
+rm -f /etc/init/init-redis.conf
+rm -f /usr/local/sbin/oc-init-redis
